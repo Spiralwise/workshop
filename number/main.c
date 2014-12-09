@@ -6,13 +6,14 @@
 // Paramètres du jeu
 int MAX_VALUE;
 int MIN_VALUE = 1;
+int difficulty; // Difficulté du jeu
 
 // Variables du jeu
 int hiddenNumber; // Nombre à deviner
 int userNumber; // Nombre donné par le joueur
 int coups; // Nombre de coups effectués par le joueur pour deviner le nombre
 char userInput; // Entrée utilisateur autre qu'un nombre
-int difficulty; // Difficulté du jeu
+int minBound, maxBound; // Indique les bornes min et max dans lequel trouver le nombre
 
 int main (int argc, char** argv)
 {
@@ -48,6 +49,8 @@ int main (int argc, char** argv)
 				MAX_VALUE = 100000000;
 		}
 		hiddenNumber = rand() % (MAX_VALUE+1 - MIN_VALUE) + MIN_VALUE;
+		minBound     = 0;
+		maxBound     = MAX_VALUE;
 		coups        = 0;
 
 		// Boucle du jeu
@@ -61,10 +64,19 @@ int main (int argc, char** argv)
 			if (userNumber > MAX_VALUE || userNumber < MIN_VALUE)
 				printf ("T'es sérieux ? ");
 			if (userNumber > hiddenNumber)
+			{
+				if (maxBound > userNumber)
+					maxBound = userNumber;
 				printf ("C'est moins...\n");
+			}
 			else if (userNumber < hiddenNumber)
+			{
+				if (minBound < userNumber)
+					minBound = userNumber;
 				printf ("C'est plus !\n");
+			}
 			coups++;
+			printf ("C'est entre %d et %d.\n", minBound, maxBound);
 		}
 		while (userNumber != hiddenNumber);
 		if (coups > 1)
