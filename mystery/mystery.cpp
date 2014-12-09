@@ -37,6 +37,7 @@ bool loadDictionnary (const string& filename)
 			if (words.back()[words.back().size()-1] == '\r')
 				words.back().erase(words.back().size()-1);
 		}
+		file.close ();
 		return true;
 	}
 	else
