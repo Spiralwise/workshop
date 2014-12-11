@@ -3,14 +3,16 @@
 
 #include <QApplication>
 #include <QWidget>
-#include <QLCDNumber>
+#include <QProgressBar>
+#include <QPushButton>
 #include <QSlider>
 
 
 class SkizzWindow : public QWidget
 {
-	QLCDNumber* m_displayNumber;
-	QSlider*    m_sliderNumber;
+	QProgressBar* m_displayNumber;
+	QSlider*      m_sliderNumber;
+	QPushButton*  m_buttonReset;
 
 public:
 	explicit SkizzWindow(QWidget *parent = 0);
