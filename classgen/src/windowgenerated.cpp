@@ -17,5 +17,5 @@ WindowGenerated::WindowGenerated(const QString& code, QWidget *parent) :
 
 	setLayout(m_layoutGlobal);
 
-	QObject::connect(m_buttonClose, SIGNAL(clicked()), this, SLOT(close()));
+	connect(m_buttonClose, SIGNAL(clicked()), this, SLOT(close()));
 }

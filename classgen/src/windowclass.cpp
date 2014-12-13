@@ -64,8 +64,8 @@ WindowClass::WindowClass(QWidget *parent) :
 	setLayout(m_layoutGlobal);
 
 	// Events handling
-	QObject::connect(m_buttonGenerate, SIGNAL(clicked()), this, SLOT(generateCode()));
-	QObject::connect(m_buttonQuit, SIGNAL(clicked()), this, SLOT(close()));
+	connect(m_buttonGenerate, SIGNAL(clicked()), this, SLOT(generateCode()));
+	connect(m_buttonQuit, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 
@@ -92,8 +92,8 @@ void WindowClass::generateCode()
 	// Add header options
 	if (m_checkboxProtectHeader->isChecked())
 	{
-		code += "#ifndef " + className.toUpper() + "\n";
-		code += "#define " + className.toUpper() + "\n\n";
+		code += "#ifndef " + className.toUpper() + "_H\n";
+		code += "#define " + className.toUpper() + "_H\n\n";
 	}
 
 	// Add class name
@@ -112,9 +112,9 @@ void WindowClass::generateCode()
 	code += "}\n";
 
 	if (m_checkboxProtectHeader->isChecked())
-		code += "#endif // " + className + "\n";
+		code += "#endif // " + className.toUpper() + "_H\n";
 
 
-	WindowGenerated dialogGenerated (code);
+	WindowGenerated dialogGenerated (code, this);
 	dialogGenerated.exec();
 }
