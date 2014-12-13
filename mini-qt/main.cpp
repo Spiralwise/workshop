@@ -6,7 +6,7 @@ int main (int argc, char** argv)
 {
 	QApplication app (argc, argv);
 
-	SkizzWindow window(200,100);
+	SkizzWindow window;
 	window.show();
 
 	return app.exec ();
