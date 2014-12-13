@@ -4,8 +4,9 @@
 #include <QApplication>
 #include <QWidget>
 #include <QFontDialog>
-#include <QBoxLayout>
 #include <QGridLayout>
+#include <QFormLayout>
+#include <QLineEdit>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QProgressBar>
@@ -25,8 +26,14 @@ class SkizzWindow : public QWidget
 	QPushButton*  m_buttonInput;
 	QPushButton*  m_buttonFont;
 
+	// Forms
+	QLineEdit* m_editName;
+	QLineEdit* m_editAnimal;
+	QLineEdit* m_editAge;
+
 	// Layouts
 	QGridLayout*  m_layoutGlobal;
+	QFormLayout*  m_layoutForm;
 
 public:
 	explicit SkizzWindow(QWidget *parent = 0);

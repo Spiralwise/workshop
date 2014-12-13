@@ -20,6 +20,15 @@ SkizzWindow::SkizzWindow(QWidget *parent)
 	m_buttonFont = new QPushButton("Howdyho! Change thy font and be neat!", this);
 	m_layoutGlobal->addWidget(m_buttonFont, 3, 0, 1, 3);
 
+	m_layoutForm = new QFormLayout;
+	m_editName   = new QLineEdit;
+	m_editAnimal = new QLineEdit;
+	m_editAge    = new QLineEdit;
+	m_layoutForm->addRow("Your &name", m_editName);
+	m_layoutForm->addRow("Your &animal", m_editAnimal);
+	m_layoutForm->addRow("Your a&ge", m_editAge);
+	m_layoutGlobal->addLayout(m_layoutForm, 4, 0, 1, 3);
+
 	this->setLayout(m_layoutGlobal);
 
 	QObject::connect(m_sliderNumber, SIGNAL(valueChanged(int)), m_displayNumber, SLOT(setValue(int)));
