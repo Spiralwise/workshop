@@ -11,6 +11,7 @@ WindowGenerated::WindowGenerated(const QString& code, QWidget *parent) :
 		m_buttonClose   = new QPushButton("Close");
 		m_generatedCode->setReadOnly(true);
 		m_generatedCode->setMinimumHeight(300);
+		m_generatedCode->setFont(QFont("monospace", 9));
 		m_generatedCode->setText(code);
 		m_layoutGlobal->addWidget(m_generatedCode);
 		m_layoutGlobal->addWidget(m_buttonClose);
