@@ -13,7 +13,8 @@ class WindowClass : public QWidget
 	QLineEdit*   m_editClassParent;
 
 	// Class options
-	QCheckBox*   m_checkboxProtectHeader;
+	QCheckBox*   m_checkboxHeaderGuard;
+	QLineEdit*   m_editHeaderGuardName;
 	QCheckBox*   m_checkboxDefaultConstructor;
 	QCheckBox*   m_checkboxDefaultDestructor;
 
@@ -32,8 +33,9 @@ public:
 
 signals:
 
-public slots:
+private slots:
 	void generateCode();
+	void updateHeaderGuardName(const QString&);
 
 };
 

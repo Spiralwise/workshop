@@ -21,12 +21,15 @@ WindowClass::WindowClass(QWidget *parent) :
 	// Box options
 	QGroupBox* m_boxOptions      = new QGroupBox("Options");
 	QVBoxLayout* m_layoutOptions = new QVBoxLayout();
-		m_checkboxProtectHeader      = new QCheckBox("Protected header from multiple inclusion");
+		m_checkboxHeaderGuard        = new QCheckBox("Protected header from multiple inclusion");
+		m_editHeaderGuardName        = new QLineEdit();
 		m_checkboxDefaultConstructor = new QCheckBox("Create default constructor");
 		m_checkboxDefaultDestructor  = new QCheckBox("Create default destructor");
-		m_checkboxProtectHeader->setChecked(true);
+		m_checkboxHeaderGuard->setChecked(true);
+		m_editHeaderGuardName->setPlaceholderText("Header guard name");
 		m_checkboxDefaultConstructor->setChecked(true);
-		m_layoutOptions->addWidget(m_checkboxProtectHeader);
+		m_layoutOptions->addWidget(m_checkboxHeaderGuard);
+		m_layoutOptions->addWidget(m_editHeaderGuardName);
 		m_layoutOptions->addWidget(m_checkboxDefaultConstructor);
 		m_layoutOptions->addWidget(m_checkboxDefaultDestructor);
 		m_boxOptions->setLayout(m_layoutOptions);
@@ -64,6 +67,7 @@ WindowClass::WindowClass(QWidget *parent) :
 	setLayout(m_layoutGlobal);
 
 	// Events handling
+	connect(m_editClassName, SIGNAL(textEdited(QString)), this, SLOT(updateHeaderGuardName(QString)));
 	connect(m_buttonGenerate, SIGNAL(clicked()), this, SLOT(generateCode()));
 	connect(m_buttonQuit, SIGNAL(clicked()), this, SLOT(close()));
 }
@@ -73,6 +77,7 @@ void WindowClass::generateCode()
 {
 	QString code = "";
 	QString className = m_editClassName->text();
+	QString headerGuardName = m_editHeaderGuardName->text();
 
 	// Add comments
 	if (m_boxComment->isChecked())
@@ -90,10 +95,10 @@ void WindowClass::generateCode()
 	}
 
 	// Add header options
-	if (m_checkboxProtectHeader->isChecked())
+	if (m_checkboxHeaderGuard->isChecked())
 	{
-		code += "#ifndef " + className.toUpper() + "_H\n";
-		code += "#define " + className.toUpper() + "_H\n\n";
+		code += "#ifndef " + headerGuardName + "\n";
+		code += "#define " + headerGuardName + "\n\n";
 	}
 
 	// Add class name
@@ -111,10 +116,16 @@ void WindowClass::generateCode()
 
 	code += "}\n";
 
-	if (m_checkboxProtectHeader->isChecked())
-		code += "#endif // " + className.toUpper() + "_H\n";
+	if (m_checkboxHeaderGuard->isChecked())
+		code += "#endif // " + headerGuardName + "\n";
 
 
 	WindowGenerated dialogGenerated (code, this);
 	dialogGenerated.exec();
+}
+
+
+void WindowClass::updateHeaderGuardName(const QString& name)
+{
+	m_editHeaderGuardName->setText(name.toUpper() + "_H");
 }
