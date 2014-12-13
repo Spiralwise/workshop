@@ -115,7 +115,7 @@ void WindowClass::generateCode()
 	if (m_checkboxDefaultDestructor->isChecked())
 		code += "\t~" + className + "();\n";
 
-	code += "}\n";
+	code += "};\n";
 
 	if (m_checkboxHeaderGuard->isChecked())
 		code += "#endif // " + headerGuardName + "\n";
