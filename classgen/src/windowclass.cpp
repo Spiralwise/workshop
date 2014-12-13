@@ -5,7 +5,7 @@
 WindowClass::WindowClass(QWidget *parent) :
 	QWidget(parent)
 {
-	setWindowTitle("C++ Class Generator");
+	setWindowTitle("Create a new C++ class");
 	setMinimumWidth(400);
 
 	// Box definition
@@ -76,52 +76,59 @@ WindowClass::WindowClass(QWidget *parent) :
 
 void WindowClass::generateCode()
 {
-	QString code = "";
+	QString header = "", source = "";
 	QString className = m_editClassName->text();
 	QString headerGuardName = m_editHeaderGuardName->text();
 
-	// Add comments
+
+	// ---- Comments
 	if (m_boxComment->isChecked())
 	{
 		QString author  = m_editAuthor->text();
 		QString comment = m_editComment->toPlainText();
 
-		code += "/*\n";
+		header += "/*\n";
 		if (!author.isEmpty())
-			code += "Author : " + author + "\n";
-		code += "Date : " + m_editDate->date().toString("ddd d MMM yyyy") + "\n";
+			header += "Author : " + author + "\n";
+		header += "Date : " + m_editDate->date().toString("ddd d MMM yyyy") + "\n";
 		if (!comment.isEmpty())
-			code += "\n" + comment + "\n";
-		code += "*/\n\n";
+			header += "\n" + comment + "\n";
+		header += "*/\n\n";
 	}
 
-	// Add header options
+	// ---- Header
 	if (m_checkboxHeaderGuard->isChecked())
 	{
-		code += "#ifndef " + headerGuardName + "\n";
-		code += "#define " + headerGuardName + "\n\n";
+		header += "#ifndef " + headerGuardName + "\n";
+		header += "#define " + headerGuardName + "\n\n";
+	}
+	source += "#include \"" + className.toLower() + ".h\"\n";
+
+	// ---- Class definition
+	header += "class " + className;
+	if (!m_editClassParent->text().isEmpty())
+		header += " : public " + m_editClassParent->text();
+	header += "\n{\n\n";
+	header += "public: \n";
+
+	// ---- Methods
+	if (m_checkboxDefaultConstructor->isChecked())
+	{
+		header += "\t" + className + "();\n";
+		source += "\n\n" + className + "::" + className + "()\n{\n\t\n}\n";
+	}
+	if (m_checkboxDefaultDestructor->isChecked())
+	{
+		header += "\t~" + className + "();\n";
+		source += "\n\n" + className + "::~" + className + "()\n{\n\t\n}\n";
 	}
 
-	// Add class name
-	code += "class " + className;
-	if (!m_editClassParent->text().isEmpty())
-		code += " : public " + m_editClassParent->text();
-	code += "\n{\n\n";
-	code += "public: \n";
-
-	// Add method options
-	if (m_checkboxDefaultConstructor->isChecked())
-		code += "\t" + className + "();\n";
-	if (m_checkboxDefaultDestructor->isChecked())
-		code += "\t~" + className + "();\n";
-
-	code += "};\n";
+	header += "};\n";
 
 	if (m_checkboxHeaderGuard->isChecked())
-		code += "#endif // " + headerGuardName + "\n";
+		header += "#endif // " + headerGuardName + "\n";
 
-
-	WindowGenerated dialogGenerated (code, this);
+	WindowGenerated dialogGenerated (header, source, this);
 	dialogGenerated.exec();
 }
 

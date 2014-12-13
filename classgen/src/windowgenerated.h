@@ -8,11 +8,12 @@ class WindowGenerated : public QDialog
 	Q_OBJECT
 
 	QVBoxLayout* m_layoutGlobal;
-	QTextEdit*   m_generatedCode;
+	QTextEdit*   m_generatedHeader;
+	QTextEdit*   m_generatedSource;
 	QPushButton* m_buttonClose;
 
 public:
-	explicit WindowGenerated(const QString& code, QWidget *parent = 0);
+	explicit WindowGenerated(const QString& header, const QString& source, QWidget *parent = 0);
 
 signals:
 
