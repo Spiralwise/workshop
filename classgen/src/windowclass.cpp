@@ -37,6 +37,7 @@ WindowClass::WindowClass(QWidget *parent) :
 	// Box comment
 	m_boxComment    = new QGroupBox("Comments");
 	m_boxComment->setCheckable(true);
+	m_boxComment->setChecked(false);
 	QFormLayout* m_layoutComment = new QFormLayout();
 		m_editAuthor  = new QLineEdit();
 		m_editDate    = new QDateEdit(QDate::currentDate());
