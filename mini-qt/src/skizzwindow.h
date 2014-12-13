@@ -2,16 +2,7 @@
 #define SKIZZWINDOW_H
 
 #include <QApplication>
-#include <QWidget>
-#include <QFontDialog>
-#include <QGridLayout>
-#include <QFormLayout>
-#include <QLineEdit>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QProgressBar>
-#include <QPushButton>
-#include <QSlider>
+#include <QtWidgets>
 
 
 class SkizzWindow : public QWidget
