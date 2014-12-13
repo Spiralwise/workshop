@@ -9,8 +9,8 @@ WindowClass::WindowClass(QWidget *parent) :
 	setMinimumWidth(400);
 
 	// Box definition
-	m_boxDefinition    = new QGroupBox("Class definition");
-	m_layoutDefinition = new QFormLayout();
+	QGroupBox* m_boxDefinition      = new QGroupBox("Class definition");
+	QFormLayout* m_layoutDefinition = new QFormLayout();
 		m_editClassName    = new QLineEdit();
 		m_editClassParent  = new QLineEdit();
 		m_editClassName->setPlaceholderText("Put class name here...");
@@ -19,8 +19,8 @@ WindowClass::WindowClass(QWidget *parent) :
 		m_boxDefinition->setLayout(m_layoutDefinition);
 
 	// Box options
-	m_boxOptions    = new QGroupBox("Options");
-	m_layoutOptions = new QVBoxLayout();
+	QGroupBox* m_boxOptions      = new QGroupBox("Options");
+	QVBoxLayout* m_layoutOptions = new QVBoxLayout();
 		m_checkboxProtectHeader      = new QCheckBox("Protected header from multiple inclusion");
 		m_checkboxDefaultConstructor = new QCheckBox("Create default constructor");
 		m_checkboxDefaultDestructor  = new QCheckBox("Create default destructor");
@@ -34,7 +34,7 @@ WindowClass::WindowClass(QWidget *parent) :
 	// Box comment
 	m_boxComment    = new QGroupBox("Comments");
 	m_boxComment->setCheckable(true);
-	m_layoutComment = new QFormLayout();
+	QFormLayout* m_layoutComment = new QFormLayout();
 		m_editAuthor  = new QLineEdit();
 		m_editDate    = new QDateEdit(QDate::currentDate());
 		m_editComment = new QPlainTextEdit();
@@ -45,7 +45,7 @@ WindowClass::WindowClass(QWidget *parent) :
 		m_boxComment->setLayout(m_layoutComment);
 
 	// Layout buttons
-	m_layoutButtons = new QHBoxLayout();
+	QHBoxLayout* m_layoutButtons = new QHBoxLayout();
 		m_buttonGenerate = new QPushButton("Generate!");
 		m_buttonQuit     = new QPushButton("Quit");
 		m_buttonGenerate->setFixedWidth(120);
@@ -55,7 +55,7 @@ WindowClass::WindowClass(QWidget *parent) :
 		m_layoutButtons->setAlignment(Qt::AlignRight);
 
 	// Layout global
-	m_layoutGlobal = new QVBoxLayout();
+	QVBoxLayout* m_layoutGlobal = new QVBoxLayout();
 	m_layoutGlobal->addWidget(m_boxDefinition);
 	m_layoutGlobal->addWidget(m_boxOptions);
 	m_layoutGlobal->addWidget(m_boxComment);
