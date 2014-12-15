@@ -23,7 +23,7 @@ WindowGenerated::WindowGenerated(const QString& header, const QString& source, Q
 			m_generatedSource->setFont(codeFont);
 			m_generatedSource->setText(source);
 			m_buttonClose->setFixedWidth(80);
-			tabs->addTab(m_generatedHeader, "Header");
+			tabs->addTab(m_generatedHeader, "Header"); // TODO Afficher le nom des fichiers plutôt
 			tabs->addTab(m_generatedSource, "Source");
 
 		m_layoutGlobal->addWidget(tabs);
