@@ -17,7 +17,7 @@ int main (int argc, char** argv)
 		fprintf (stderr, "E: SDL not initialized. %s\n", SDL_GetError());
 		exit (EXIT_FAILURE);
 	}
-	screen = SDL_SetVideoMode (640, 480, 32, SDL_HWSURFACE);
+	screen = SDL_SetVideoMode (640, 480, 32, SDL_HWSURFACE | SDL_FULLSCREEN);
 	if (screen == NULL)
 	{
 		fprintf (stderr, "E: Can't set this video mode : %s\n", SDL_GetError());
@@ -57,6 +57,11 @@ int main (int argc, char** argv)
 		switch (event.type)
 		{
 			case SDL_QUIT: running = 0; break;
+			case SDL_KEYDOWN: switch (event.key.keysym.sym)
+				{
+					case SDLK_ESCAPE: running = 0; break;
+				}
+				break;
 		}
 	}
 
