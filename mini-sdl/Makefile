@@ -1,6 +1,6 @@
 CPP=gcc
 CFLAGS=-O3
-LDFLAGS=-lSDL
+LDFLAGS=-lSDL -lSDL_image
 EXEC=minisdl
 
 all: ${EXEC}
