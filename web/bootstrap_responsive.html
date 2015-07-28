@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testing Bootstrap - Responsive</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>It's image time!</h2>
+		<img src="ada.jpg" class="img-rounded" width="230" height="230">
+		<!-- That streches images! -->
+		<img src="ada.jpg" class="img-circle">
+		
+		<img src="storm.jpg" class="img-responsive">
+		<!-- The image above follows the size of the window. -->
+		<img src="storm.jpg">
+		
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/XCeukUsCodk"></iframe>
+		</div>
+	</div>
+</body>
+</html>
