@@ -63,7 +63,7 @@ while game_on:
 	print("C'est parti...")
 	roulette = randrange(50)
 	print("Et le numéro gagnant est", roulette, " !")
-	if roulette == mise:
+	if roulette == numero:
 		print("Félicitation ! Et voici votre gain !")
 		gainAmount(mise*3)
 		combo += 1
