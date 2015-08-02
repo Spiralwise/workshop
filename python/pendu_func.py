@@ -103,11 +103,38 @@ def hide_word(number_of_letters, wildcard="*"):
     """
     return str(wildcard * number_of_letters)
 
-def test_letter(current_word, hidden_word, letter):
+def test_letter(hidden_word, current_word, letter, wildcard="*"):
+    """Check if the letter is present in the current word.
+    The hidden word and the current word must match in size and any
+    discovered letters.
+
+    Args:
+    hidden_word (str): The word to guess with hidden letter by the wildcard.
+    current_word (str): The word to guess. It must contain some wildcard to
+    hide some letters.
+    letter (str): The letter to test with.
+
+    Returns:
+    (return code, the hidden word with the input letter discovered)
+    return code: -1 if an error occured. 0 if not guessed. 1 if well guessed. 2 if already given.
+    """
     if len(current_word) != len(hidden_word):
-        print("Warning: You put two words with different length. Function will return False.")
-        return False, current_word
-    for l in 
+        print("Error: You put two words with different length. Function will return False.")
+        return -1, hidden_word
+    guessed = 0
+    result_word = ""
+    for idx, ltr in enumerate(hidden_word):
+        if ltr != wildcard and ltr != current_word[idx]:
+            print("Error: The input words don't match.")
+            return -1, hidden_word
+        if ltr == letter:
+            return 0, hidden_word
+        if ltr == wildcard and current_word[idx] == letter:
+            result_word += letter
+            guessed = 1
+        else
+            result_word += ltr
+        return guessed, result_word
 
 if __name__ == "__main__":
     generate_savefile(filepath_score)
