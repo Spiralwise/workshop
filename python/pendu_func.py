@@ -14,7 +14,6 @@ filepath_score = "score.dat"
 # Data
 scores = {}
 current_player = "noname"
-current_score = -1
 
 # Functions
 def generate_savefile(filepath):
@@ -62,23 +61,19 @@ def init_player(name):
     """
     global scores
     global current_player
-    global current_score
     
     current_player = name
     if current_player in scores:
-        current_score = scores[current_player]
         return False
     else:
-        current_score = 0
+        scores[current_player] = 0
         return True
 
 def save_game():
     """Save the current player state."""
     global scores
     global current_player
-    global current_score
 
-    scores[current_player] = current_score
     with open(filepath_score, "wb") as score_file:
         file_writer = pickle.Pickler(score_file)
         file_writer.dump(scores)
@@ -116,7 +111,9 @@ def test_letter(hidden_word, current_word, letter, wildcard="*"):
 
     Returns:
     (return code, the hidden word with the input letter discovered)
-    return code: -1 if an error occured. 0 if not guessed. 1 if well guessed. 2 if already given.
+    return code: -1 if an error occured. 0 if not guessed. 1 if well guessed.
+    2 if already given.
+    10 if the entire word is found.
     """
     if len(current_word) != len(hidden_word):
         print("Error: You put two words with different length. Function will return False.")
@@ -128,13 +125,23 @@ def test_letter(hidden_word, current_word, letter, wildcard="*"):
             print("Error: The input words don't match.")
             return -1, hidden_word
         if ltr == letter:
-            return 0, hidden_word
+            return 2, hidden_word
         if ltr == wildcard and current_word[idx] == letter:
             result_word += letter
             guessed = 1
-        else
+        else:
             result_word += ltr
-        return guessed, result_word
+    if wildcard not in result_word:
+        guessed = 10
+    return guessed, result_word
+
+def get_player_score(player_name):
+    """Return the player score. If doesn't exit, return -1."""
+    return scores.get(player_name, -1)
+
+def add_player_score(player_name, value):
+    """Add value to the player score."""
+    scores[player_name] += value
 
 if __name__ == "__main__":
     generate_savefile(filepath_score)
