@@ -24,7 +24,7 @@ while game_on:
     lifes = 9
     guessed = False
     while lifes > 0 and guessed is not 10:
-        print("Vie restant: {}".format(lifes))
+        print("Vie restante: {}".format(lifes))
         print(hidden_word)
         letter = input(" > ")
         if len(letter):
@@ -38,7 +38,7 @@ while game_on:
             if guessed is 0: # Not -1 Because we won't penalize for program error.
                 lifes -= 1
         else:
-            print("Veuillez entrer une lettre")
+            print("Veuillez entrer une lettre !")
 
     # End
     if lifes is 0:
