@@ -23,7 +23,7 @@ while game_on:
     # Play
     lifes = 9
     guessed = False
-    while lifes > 0 and guessed is not 10:
+    while lifes > 0 and hidden_word != selected_word:
         print("Vie restante: {}".format(lifes))
         print(hidden_word)
         letter = input(" > ")
@@ -44,7 +44,8 @@ while game_on:
     if lifes is 0:
         print("Dommage ! Vous avez perdu... Le mot était {}.".format(selected_word))
     else:
-        print("Félictations ! Vous avez devinez le mot ! Vous gagnez {} point(s) !".format(str(lifes)))
+        print("Félictations ! Vous avez devinez le mot {} ! "
+        "Vous gagnez {} point(s) !".format(selected_word, str(lifes)))
         add_player_score(name, lifes)
     print("Score actuel : ", get_player_score(name))
     
