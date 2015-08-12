@@ -1,0 +1,26 @@
+#code {
+	font-family: monospace;
+	margin: 1em;
+	padding: 1em;
+}
+
+.claire {
+	color: #3d2b1f;
+	background: #fefee2;
+}
+
+.obscure {
+	color: #597FB3;
+	/*background: #0f1b3e;*/
+	background: #011b3e;
+}
+
+.obscure .type {
+	/*color: #3961e4;*/
+	color: #B7CCE9;
+}
+
+.obscure .comment-block {
+	/*color: #2946a4;*/
+	color: #022c65;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spiralwise Universal Development Outlines</title>
+	
+	<!-- Bootsrap -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	
+	<!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
+	<!-- Color syntax of SUDO -->
+	<link rel="stylesheet" href="color-syntax.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<h1>Spiralwise Universal Development Outlines</h1>
+		<div>This document describes recommended syntax color for IDE. The pair of color syntax theme is called Claire/Obscure</div>
+		<div class="container">
+			
+			<div id="title"><h2>Obscure</h2></div>
+			
+			<button id="switch" type="btn btn-primary">Switch Mode</button>
+			
+			<div id="code" class="obscure">
+				#include &lt;iostream&gt;</br>
+				</br>
+				using namespace std;</br>
+				</br>
+				<span class="type">int</span> main (<span class="type">int</span> argc, <span class="type">char**</span> argv)</br>
+				{</br>
+					<div style="padding-left:4em;">char myChar = 'a';</br>
+					<span class="type">int</span> myNumber = 1984;</br>
+					</br>
+					<span class="comment">// This is a short nice comment.</br></span>
+					cout &lt;&lt; "The character is " &lt;&lt; myChar &lt;&lt; " with number " &lt;&lt; myNumber &lt;&lt; endl;</br>
+					</br>
+					return EXIT_SUCCESS;</br>
+					</div>
+				}</br>
+				</br>
+				<span class="type">class</span> MyClass</br>
+				{</br>
+					<div style="padding-left:4em;"><span class="type">float</span> some_values;</div>
+				</br>
+				public:</br>
+					<div style="padding-left:4em;">MyClass();</br>
+					<span class="type">void</span> myFunction(const int*);</br></div>
+				};</br>
+				</br>
+				<span class="comment-block">/** This is a cool comment block</br>
+				about a thing regarding stuffs on something.**/</br></span>
+				void MyClass::myFunction(const int* pointer)</br>
+				{</br>
+					<div style="padding-left:4em;">doing_something();</div>
+				}</br>
+			</div>
+			
+		</div>
+	</div>
+	
+	<script>
+		$("#switch").click(function(e) {
+			e.preventDefault();
+			$("#code").toggleClass("claire");
+			$("#code").toggleClass("obscure");
+			if ($("#code").hasClass("obscure"))
+				$("#title").html("<h2>Obscure</h2>");
+			else
+				$("#title").html("<h2>Claire</h2>");
+		});
+	</script>
+</body>
+</html>
