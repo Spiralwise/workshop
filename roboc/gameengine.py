@@ -1,16 +1,27 @@
 #!/usr/bin/python
 #-*-coding:utf-8 -*-
 
+from pawn import *
+from map import Map
+
 class GameEngine:
     """Cette classe contient le moteur du jeu.
        Cela inclut la gestion de la map et du joueur."""
 
     def __init__(self):
-        self.game_on = True #TODO Utiliser des setters et getters!
+        self._game_on = True
+        self._map = Map()
 
-    def loadMap(self, mapname="noname", filepath="/dev/null"):
+    def _get_game_on(self):
+        return self._game_on
+    
+    gameOn = property(_get_game_on)
+
+    def loadMap(self, mapname, filepath,\
+                robot_repr, wall_repr, door_repr, exit_repr):
         self._mapname = mapname
-        # TODO
+        self._map.readFile(filepath,\
+                           robot_repr, wall_repr, door_repr, exit_repr)
 
     def loadGame(self):
         # TODO
@@ -21,12 +32,16 @@ class GameEngine:
         pass
 
     def displayMap(self):
-        #TODO
-        pass
+        frame_buffer = "";
+        for line in self._map:
+            for c in line:
+                frame_buffer += str(c)
+            frame_buffer += "\n"
+        print(frame_buffer)
     
     def callStop(self):
-        self.saveGame(self._mapname)
-        self.game_on = False
+        #self.saveGame(self._mapname)
+        self._game_on = False
 
     def execCommand(self, command):
         # TODO

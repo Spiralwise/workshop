@@ -41,23 +41,24 @@ while idx == -1:
     else:
         idx -= 1
         print("Chargement de la map {}...".format(maps[idx]["mapname"]))
-        game.loadMap(**maps[idx])
+        game.loadMap(robot_repr="X", wall_repr="O",\
+                     door_repr=".", exit_repr="U", **maps[idx])
 
 # Game Loop
-while game.game_on:
+while game.gameOn:
     game.displayMap()
     
     # Exécution des commandes
     command = input("> ")
     print(command)
     if command == "help":
-        help(GameEngine)
+        print("Ok, je devrais afficher une vraie aide ici...") #TODO
     ## Quitter le jeu
     elif command == "quit":
         game.callStop()
     ## Envoyer la commande au Game Engine
     else:
-        if game.execCommand(command):
+        if not game.execCommand(command):
             print("Mmh... Je crois que je n'ai pas compris.")
 
 # Extro
