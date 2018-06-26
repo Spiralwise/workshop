@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<title>Civilization VI</title>
+	<style>
+		body {
+			background: black url("civ6-background.jpg") no-repeat fixed left;
+			margin: auto;
+			width: 100%;
+		}
+
+		#clock {
+			color: #201005;
+			font-size: 5em;
+			font-family: cambria, sans-serif;
+			position: fixed;
+			top: 50%;
+			left: 300px;
+			text-shadow: 0px 0px 10px #b59595;
+		}
+
+		.clock-end {
+			font-size: 1.5em !important;
+			width: 40%;
+		}
+	</style>
+</head>
+<body>
+	<div id="clock">- --:--:--</div>
+	<script>
+		var deadline = new Date ("October 21, 2016 09:30:00");
+		var toSeconds = 1000;
+		var toMinutes = 60 * toSeconds;
+		var toHours = 60 * toMinutes;
+		var toDays = 24 * toHours;
+		var szDays;
+		var timer = window.setInterval (function () {
+			var remaining = deadline.getTime() - Date.now ();
+			if (remaining < 0) {
+				window.clearInterval(timer);
+				document.getElementById ("clock").innerHTML = "Can you build a civilization that will stand the test of time?";
+				document.getElementById ("clock").className = "clock-end";
+			}
+			else {
+				var second = Math.floor (remaining / toSeconds % 60);
+				var minute = Math.floor (remaining / toMinutes % 60);
+				var hour = Math.floor (remaining / toHours % 24);
+				var day = Math.floor (remaining / toDays);
+				if (day > 0)
+					szDays = "D-" + day + " ";
+				else
+					szDays = "";
+				if (second < 10) second = "0" + second;
+				if (minute < 10) minute = "0" + minute;
+				if (hour < 10) hour = "0" + hour;
+				document.getElementById ("clock").innerHTML =  szDays + hour + ":" + minute + ":" + second;
+			}
+		}, toSeconds);
+	</script>
+</body>
+</html>
