@@ -12,3 +12,6 @@ build-*
 number/CSharpVersion/.vs
 number/CSharpVersion/CSharpVersion/bin
 number/CSharpVersion/CSharpVersion/obj
+OCR-Game/.vs
+OCR-Game/OCR-Game/bin
+OCR-Game/OCR-Game/obj
