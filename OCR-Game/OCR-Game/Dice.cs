@@ -10,7 +10,7 @@ namespace OCR_Game
     {
         static Random random = new Random();
 
-        static public int ThrowDice()
+        static public int Roll()
         {
             return random.Next(1, 7);
         }

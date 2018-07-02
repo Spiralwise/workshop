@@ -28,12 +28,12 @@ namespace OCR_Game
         {
             while (monster.IsAlive && this.IsAlive)
             {
-                if (Dice.ThrowDice() >= Dice.ThrowDice())
+                if (Dice.Roll() >= Dice.Roll())
                 {
                     monster.Kill();
                     Score += monster.Score;
                 }
-                else if (Dice.ThrowDice() < 6)
+                else if (Dice.Roll() < 6)
                 {
                     Life -= monster.Attack();
                 }

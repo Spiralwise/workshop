@@ -10,20 +10,22 @@ namespace OCR_Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("---- Start ----");
+            Console.WriteLine("---- Denjun ----");
+            Console.WriteLine("Votre voyage commence.");
             Player player = new Player();
             Monster opponent;
             int[] killCount = new int[] { 0, 0 };
 
             while (player.IsAlive)
             {
-                if (Dice.ThrowDice() >= 4)
+                if (Dice.Roll() >= 4)
                     opponent = new HardMonster();
                 else
                     opponent = new EasyMonster();
                 player.Attack(opponent);
                 if (!opponent.IsAlive)
                 {
+                    //Console.WriteLine("Vous avez vaincu votre ennemi !");
                     if (opponent is EasyMonster)
                         killCount[0] += 1;
                     else
@@ -31,8 +33,24 @@ namespace OCR_Game
                 }
             }
 
-            Console.WriteLine("You died! During your journey, you killed " + killCount[0] + " easy monsters and " + killCount[1] + " hard monsters.");
-            Console.WriteLine("Score: " + player.Score);
+            ShowScore(killCount[0], killCount[1], player.Score);
+        }
+
+        static void ShowScore(int easy, int hard, int score)
+        {
+            ConsoleColor localColor = Console.ForegroundColor;
+            Console.Write("You died! During your journey, you killed ");
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.Write(easy + " easy monsters");
+            Console.ForegroundColor = localColor;
+            Console.Write(" and ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(hard + " hard monsters");
+            Console.ForegroundColor = localColor;
+            Console.Write(".");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("Score: " + score);
+            Console.ForegroundColor = localColor;
         }
     }
 }

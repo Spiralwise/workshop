@@ -10,14 +10,15 @@ namespace OCR_Game
     {
         public HardMonster() : base(2)
         {
+            Console.WriteLine("Vous rencontrez un ogre.");
         }
 
         public override int Attack()
         {
             int damage = 0;
-            if (Dice.ThrowDice() > Dice.ThrowDice() && Dice.ThrowDice() > 2)
+            if (Dice.Roll() > Dice.Roll() && Dice.Roll() > 2)
                 damage = 10;
-            int magicAttack = Dice.ThrowDice();
+            int magicAttack = Dice.Roll();
             if (magicAttack < 6)
                 damage = 5 * magicAttack;
             return damage;

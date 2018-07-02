@@ -10,11 +10,12 @@ namespace OCR_Game
     {
         public EasyMonster() : base(1)
         {
+            Console.WriteLine("Vous rencontrez un petit troll.");
         }
 
         public override int Attack()
         {
-            if (Dice.ThrowDice() > Dice.ThrowDice() && Dice.ThrowDice() > 2)
+            if (Dice.Roll() > Dice.Roll() && Dice.Roll() > 2)
                 return 10;
             else
                 return 0;

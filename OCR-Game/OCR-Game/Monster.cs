@@ -8,21 +8,12 @@ namespace OCR_Game
 {
     abstract class Monster
     {
-        int m_life;
-
-        public bool IsAlive
-        {
-            get
-            {
-                return m_life > 0;
-            }
-        }
-
+        public bool IsAlive { get; private set; }
         public int Score { get; private set; }
 
         public Monster(int value)
         {
-            m_life = 1;
+            IsAlive = true;
             Score = value;
         }
 
@@ -30,7 +21,7 @@ namespace OCR_Game
 
         public void Kill()
         {
-            m_life = 0;
+            IsAlive = false;
         }
     }
 }
