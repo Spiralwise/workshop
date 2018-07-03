@@ -8,20 +8,34 @@ namespace OCR_Game
 {
     abstract class Monster
     {
-        public bool IsAlive { get; private set; }
-        public int Score { get; private set; }
+        protected string m_name = "monstre";
+        protected int m_damage = 10;
+        protected int m_life = 1;
 
-        public Monster(int value)
+        public string Name { get; protected set; }
+
+        public int Score { get; protected set; }
+
+        public bool IsAlive
         {
-            IsAlive = true;
-            Score = value;
+            get { return m_life > 0; }
         }
 
-        public abstract int Attack();
+        public Monster() { }
 
-        public void Kill()
+        static public Monster Create()
         {
-            IsAlive = false;
+            if (Dice.Roll() <= 3)
+                return new EasyMonster();
+            else
+                return new HardMonster();
+        }
+
+        public abstract void Attack(Player player);
+
+        public void Hurt(int damage)
+        {
+            m_life -= damage;
         }
     }
 }

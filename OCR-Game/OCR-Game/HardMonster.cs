@@ -8,19 +8,27 @@ namespace OCR_Game
 {
     class HardMonster : Monster
     {
-        public HardMonster() : base(2)
+        private int m_damageMagic = 5;
+
+        public HardMonster() : base()
         {
-            Console.WriteLine("Vous rencontrez un ogre.");
+            Name = "ogre";
+            Score = 2;
         }
 
-        public override int Attack()
+        public override void Attack(Player player)
+        {
+            if (Dice.Roll() > Dice.Roll())
+                player.Hurt(m_damage);
+            player.Hurt(MagicAttack());
+        }
+
+        private int MagicAttack()
         {
             int damage = 0;
-            if (Dice.Roll() > Dice.Roll() && Dice.Roll() > 2)
-                damage = 10;
             int magicAttack = Dice.Roll();
             if (magicAttack < 6)
-                damage = 5 * magicAttack;
+                damage = m_damageMagic * magicAttack;
             return damage;
         }
     }

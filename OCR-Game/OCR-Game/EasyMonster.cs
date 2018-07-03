@@ -8,17 +8,16 @@ namespace OCR_Game
 {
     class EasyMonster : Monster
     {
-        public EasyMonster() : base(1)
+        public EasyMonster() : base()
         {
-            Console.WriteLine("Vous rencontrez un petit troll.");
+            Name = "troll";
+            Score = 1;
         }
 
-        public override int Attack()
+        public override void Attack(Player player)
         {
-            if (Dice.Roll() > Dice.Roll() && Dice.Roll() > 2)
-                return 10;
-            else
-                return 0;
+            if (Dice.Roll() > Dice.Roll())
+                player.Hurt(m_damage);
         }
     }
 }

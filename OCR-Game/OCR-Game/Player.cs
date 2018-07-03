@@ -8,36 +8,35 @@ namespace OCR_Game
 {
     class Player
     {
+        private int damage = 10;
+
         public int Life { get; private set; }
-        public int Score { get; private set; }
 
         public bool IsAlive
         {
-            get
-            {
-                return Life > 0;
-            }
+            get { return Life > 0; }
         }
 
-        public Player()
+        public Player(int life)
         {
-            Life = 150;
+            Life = life;
         }
 
         public void Attack(Monster monster)
         {
-            while (monster.IsAlive && this.IsAlive)
-            {
-                if (Dice.Roll() >= Dice.Roll())
-                {
-                    monster.Kill();
-                    Score += monster.Score;
-                }
-                else if (Dice.Roll() < 6)
-                {
-                    Life -= monster.Attack();
-                }
-            }
+            if (Dice.Roll() >= Dice.Roll())
+                monster.Hurt(damage);
+        }
+
+        public void Hurt(int damage)
+        {
+            if (!Shield())
+                Life -= damage;
+        }
+
+        private bool Shield()
+        {
+            return Dice.Roll() <= 2;
         }
     }
 }
